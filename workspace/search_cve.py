@@ -16,38 +16,24 @@ def load_services(filename):
     f.close()
     return services
 
+def load_cves(filename)
+    f = open(f"{filename}", 'r')
+    cves = f.read()
+    f.close()
+    return cves
 
 
-
-services = load_services('./service_lists/svc_details.2023-06-23.json')
-
-service_name_list=[]
-service_vendor_list=[]
-
-print("[i] Starting to parse services..")
-
-for service in services:
-    service_name = services[service]['name']
-    #service_vendor = services[service]['vendor']
-    service_name_list.append(service_name)
-    #service_vendor_list.append(service_vendor)
-
-# Dedup Lists
-service_name_list = list(set(service_name_list))
-#service_vendor_list = list(set(service_vendor_list))
+#services = load_services('./service_lists/svc_details.2023-06-23.json')
+cve_list = load_cves('./cve-list.txt')
 
 
-
-service_name_list.remove('HTTP')
-
-print(f"[i] Service Name List Formed, De-dupped, and cleaned up..\n\n{service_name_list}")
-
+# Connect to `msfrpcd` 
 client = MsfRpcClient("randori", server="127.0.0.1", port=55553, ssl=True)
 
 print("[i] Starting process to match service names to modules...")
 potential_module_matches = []
-for service in service_name_list:
-    modules = client.modules.search("type:exploit " + service)
+for cve in cve_list:
+    modules = client.modules.search("type:exploit cve:" + cve)
     if modules:
         potential_module_matches = potential_module_matches + modules
 
@@ -55,5 +41,4 @@ print(f"Potential Relevant Modules:\n\n{potential_module_matches}")
 
 print("[i] Writing data to json file")
 write_json_to_file("potential_modules", potential_module_matches)
-
 
