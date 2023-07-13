@@ -16,7 +16,7 @@ def load_services(filename):
     f.close()
     return services
 
-def load_cves(filename)
+def load_cves(filename):
     f = open(f"{filename}", 'r')
     cves = f.read()
     f.close()
@@ -25,6 +25,12 @@ def load_cves(filename)
 
 #services = load_services('./service_lists/svc_details.2023-06-23.json')
 cve_list = load_cves('./cve-list.txt')
+
+print(f"CVE List:\n\n{cve_list}")
+
+
+cve_list = cve_list.split()
+print(f"CVE List:\n\n{cve_list}")
 
 
 # Connect to `msfrpcd` 
@@ -37,8 +43,7 @@ for cve in cve_list:
     if modules:
         potential_module_matches = potential_module_matches + modules
 
-print(f"Potential Relevant Modules:\n\n{potential_module_matches}")
+print(f"[+] Potential Relevant Modules:\n\n{potential_module_matches}\n\n")
 
-print("[i] Writing data to json file")
+print("[i] Writing data to json file - [potential_modules.json]")
 write_json_to_file("potential_modules", potential_module_matches)
-
