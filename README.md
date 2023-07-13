@@ -80,8 +80,11 @@ metasploit via the `msfrcpd` service.
 To do this, 
 
 1) Run the container with `run.sh`
-2) run `msfrpcd -P randori -f` -- this will start the rpc daemon
-3) run `python search_cve.py``
+2) run the msfrpcd daemon:
+```
+msfrpcd -P randori -f
+```
+3) run `python search_cve.py` that's in the workspace directory
 
 
 
