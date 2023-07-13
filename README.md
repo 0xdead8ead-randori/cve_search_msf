@@ -84,7 +84,8 @@ To do this,
 ```
 msfrpcd -P randori -f
 ```
-3) run `python search_cve.py` that's in the workspace directory
+3) Put your list of CVE's in the cve-list.txt file in the workspace directory
+4) run `python search_cve.py` that's in the workspace directory
 
 
 
