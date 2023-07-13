@@ -71,3 +71,21 @@ Interact with a module by name or index. For example info 0, use 0 or use exploi
 ```
 
 
+
+# Running the script to check CVE's for metasploit module
+
+Inside the workspace directory is a script that uses pymetasploit3 to interact with 
+metasploit via the `msfrcpd` service.
+
+To do this, 
+
+1) Run the container with `run.sh`
+2) run `msfrpcd -P randori -f` -- this will start the rpc daemon
+3) run `python search_cve.py``
+
+
+
+
+
+
+
