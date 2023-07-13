@@ -8,10 +8,18 @@ Use the following steps to search for a CVE manually, using `msfconsole`.
 
 To do this we will use the `debian-msf-local` docker container image.
 
+Steps for Running:
+
+1) run the build script - `./build.sh`
+2) run the container execute script `./run.sh`
+
+
 A `Dockerfile` and build script (`build.sh`) has been included
 to build a metasploit image from scratch.
 
 Once the build script finishes, the container can be started using `run.sh`
+
+If you have questions about this code - come find Chase Schultz - @0xdead8ead on slack
 
 ---
 
